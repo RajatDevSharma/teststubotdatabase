@@ -29,7 +29,7 @@ def post():
 @app.route("/")
 def hello():
     result = collection.find( { availabilty: "no" } )
-    return result["title"]
+    return "hello"
 
 
 if __name__ == "__main__":
