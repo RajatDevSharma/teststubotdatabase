@@ -7,7 +7,7 @@ from pymongo import MongoClient
 MONGO_URL = os.environ.get('MONGODB_URI') 
 client = MongoClient(MONGO_URL)
 
-db = client.stubot1 
+db = client.heroku_lgz52rzd
 collection = db.librarysample
 
 app = Flask(__name__)
