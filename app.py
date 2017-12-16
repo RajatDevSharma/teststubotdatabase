@@ -21,6 +21,7 @@ def hello():
     result = collection.find({"availabilty":"no"})
     for i in result:
         a = i["title"]
+        print a
     return a
 
 
