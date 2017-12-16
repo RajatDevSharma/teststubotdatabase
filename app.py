@@ -40,45 +40,18 @@ def makeWebhookResult(req):
         parameters = result.get("parameters")
         book = parameters.get("title")
         
-        '''
-        #find_book="discrete"
-        speech=""
-        for i in book:
-            find_book=i
-        
-        matches = [x for x in books if re.search(find_book, x, re.M|re.I)]
-        
-        if len(matches)==0:
-            speech="Not available"
-        
-        for i in matches:
-            speech= speech + i + " , " 
-            
-        print("Response:")
-        print(speech)
-        '''
-        
         a=[]
         bookResult = collection.find( {"title":book} )
         for i in bookResult:
             a.append(i["title"])
         
         return {
-            "speech": "hello",
-            "displayText": "hello",
+            "speech": book,
+            "displayText": book,
             #"data": {},
             # "contextOut": [],
             "source": "python_stubot"
         }
-'''
-@app.route("/")
-def start():
-    a=[]
-    result = collection.find()
-    for i in result:
-        a.append(i["title"])
-    return a[0]
-'''
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
