@@ -17,11 +17,10 @@ collection = db.librarysample
 
 @app.route("/")
 def hello():
-    a="x"
-    result = collection.find({"availabilty":"no"})
+    a=[]
+    result = collection.find()
     for i in result:
-        a = i["title"]
-        print a
+        a.append(i["title"])
     return a
 
 
