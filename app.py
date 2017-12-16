@@ -42,13 +42,13 @@ def makeWebhookResult(req):
         for i in book:
             title = i
         a=[]
-        bookResult = collection.find( {"title":title} )
+        bookResult = collection.find( {"availabilty":"no"} )
         for i in bookResult:
-            a.append(i["author"])
+            a.append(i["title"])
         
         return {
             "speech": a[0],
-            "displayText": "hello",
+            "displayText": a[0],
             #"data": {},
             # "contextOut": [],
             "source": "python_stubot"
