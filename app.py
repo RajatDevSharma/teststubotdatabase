@@ -18,7 +18,7 @@ collection = db.librarysample
 @app.route("/")
 def hello():
     result = collection.find({"availabilty":"no"})
-    return result
+    return "result"
 
 
 if __name__ == "__main__":
