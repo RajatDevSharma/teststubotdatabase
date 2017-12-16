@@ -41,7 +41,7 @@ def makeWebhookResult(req):
         book = parameters.get("title")
         title = ""
         for i in book:
-            title = i
+            title = title + i
         a=[]
         #bookResult = collection.find( {"availabilty":"yes"} )
         bookResult = collection.find( {"title": title} )
