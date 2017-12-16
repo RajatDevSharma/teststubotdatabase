@@ -42,15 +42,28 @@ def makeWebhookResult(req):
         title = ""
         for i in book:
             title = i
-        a=[]
+        #a=[]
         #bookResult = collection.find( {"availabilty":"yes"} )
-        bookResult = collection.find( {"title": title} )
+        rgx = re.compile('.*' + title + '.*' , re.IGNORECASE)
+        bookResult = collection.find( {"title": rgx} )
+        length = bookResult.count()
+        
+        output = ""
+        if length == 0:
+            output = "Book Not Available"
+            
         for i in bookResult:
-            a.append(i["author"])
+            #a.append(i["author"])
+            bookEntity = i["title"] + " by " + i["author"]
+            if length != 1:
+                output = output + bookEntity + ' || '
+            elif length ==1:
+                output = output + bookEntity
+            length = length -1
         
         return {
-            "speech": title,
-            "displayText": title,
+            "speech": output,
+            "displayText": output,
             #"data": {},
             # "contextOut": [],
             "source": "python_stubot"
