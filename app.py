@@ -21,7 +21,7 @@ def hello():
     result = collection.find()
     for i in result:
         a.append(i["title"])
-    return a
+    return a[0]
 
 
 if __name__ == "__main__":
