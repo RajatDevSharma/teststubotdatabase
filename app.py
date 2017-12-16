@@ -29,7 +29,7 @@ def webhook():
     print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
-    return 
+    return r
 
 def makeWebhookResult(req):
     if req.get("result").get("action") == "search.book.title":
