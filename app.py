@@ -17,7 +17,7 @@ collection = db.librarysample
 
 @app.route("/")
 def hello():
-    #result = collection.find( { "availabilty": "no" } )
+    result = collection.find()
     return "hello"
 
 
