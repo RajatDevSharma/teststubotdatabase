@@ -12,9 +12,9 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 
-#client = MongoClient( "mongodb://rajatdev:rdsharma@ds059207.mlab.com:59207/heroku_lgz52rzd")
+client = MongoClient( "mongodb://rajatdev:rdsharma@ds059207.mlab.com:59207/heroku_lgz52rzd")
 
-#db = client.heroku_lgz52rzd
+db = client.heroku_lgz52rzd
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -34,7 +34,7 @@ def webhook():
 def makeWebhookResult(req):
     if req.get("result").get("action") == "search.book.title":
         
-        #collection = db.librarysample
+        collection = db.librarysample
         
         result = req.get("result")
         parameters = result.get("parameters")
@@ -57,15 +57,15 @@ def makeWebhookResult(req):
         print("Response:")
         print(speech)
         '''
-        '''
+        
         a=[]
         bookResult = collection.find( {"title":book} )
         for i in bookResult:
             a.append(i["title"])
-        '''
+        
         return {
-            "speech": "hello",
-            "displayText": "hello",
+            "speech": a[0],
+            "displayText": a[0],
             #"data": {},
             # "contextOut": [],
             "source": "python_stubot"
