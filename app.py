@@ -1,34 +1,23 @@
 import os
 #from flask import Flask
-from flask import Flask, render_template, request, redirect 
+from flask import Flask
 import pymongo 
 from pymongo import MongoClient
 
-MONGO_URL = os.environ.get('MONGODB_URI') 
-client = MongoClient(MONGO_URL)
+app = Flask(__name__)
+
+#MONGO_URL = os.environ.get('MONGODB_URI') 
+#client = MongoClient(MONGO_URL)
+
+client = MongoClient( "mongodb://rajatdev:rdsharma@ds059207.mlab.com:59207/heroku_lgz52rzd")
 
 db = client.heroku_lgz52rzd
 collection = db.librarysample
 
-app = Flask(__name__)
-
-'''
-@app.route("/", methods=['GET']) 
-def index(): 
-    shouts = collection.find() 
-    return render_template('index.html', shouts=shouts)
-
-@app.route("/post", methods=['POST']) 
-def post():
-    shout = {"name":request.form['name'], "message":request.form['message']} 
-    shout_id = collection.insert(shout)
-    return redirect('/')
-
-'''
 
 @app.route("/")
 def hello():
-    result = collection.find( { availabilty: "no" } )
+    #result = collection.find( { "availabilty": "no" } )
     return "hello"
 
 
