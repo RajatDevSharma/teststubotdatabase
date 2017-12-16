@@ -49,8 +49,8 @@ def makeWebhookResult(req):
             a.append(i["author"])
         
         return {
-            "speech": title,
-            "displayText": title,
+            "speech": a[0],
+            "displayText": a[0],
             #"data": {},
             # "contextOut": [],
             "source": "python_stubot"
