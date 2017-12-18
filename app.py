@@ -227,12 +227,18 @@ def makeWebhookResult(req):
                             "elements" : [ 
                                 {
                                     "title" : book,
-                                    "image_url" : "http://www.thapar.edu/images/phocagallery/nava_nalanda_central_library/thumbs/phoca_thumb_l_unnamed.jpg",
-                                    "subtitle" : output
+                                    "image_url" : "http://www.thapar.edu/images/phocagallery/nava_nalanda_central_library/thumbs/phoca_thumb_l_unnamed.jpg"
                                 }
                             ]
                         }
-                    }
+                    },
+                    "messages": [
+                        {
+                            "type": 0,
+                            "speech": output,
+                            #"platform": "facebook"
+                        }
+                    ]         
                 }
             },
             '''
