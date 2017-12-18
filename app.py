@@ -218,6 +218,13 @@ def makeWebhookResult(req):
         return {
             "speech": output,
             "displayText": output,
+            "messages": [
+                {
+                    "type": 0,
+                    "speech": output,
+                    "platform": "facebook"
+                }
+            ],
             "data" : {
                 "facebook" : {
                     "attachment" : {
@@ -231,14 +238,7 @@ def makeWebhookResult(req):
                                 }
                             ]
                         }
-                    },
-                    "messages": [
-                        {
-                            "type": 0,
-                            "speech": output,
-                            #"platform": "facebook"
-                        }
-                    ]         
+                    }         
                 }
             },
             '''
