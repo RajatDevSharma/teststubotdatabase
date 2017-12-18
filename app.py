@@ -291,7 +291,7 @@ def makeWebhookResult(req):
         
         result = req.get("result")
         parameters = result.get("parameters")
-        book = parameters.get("specs")
+        book = parameters.get("faceName")
         coll = db.Faculty
         search = book
         rgx = re.compile('.*' +search+ '.*', re.IGNORECASE)
