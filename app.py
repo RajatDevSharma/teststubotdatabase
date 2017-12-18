@@ -286,6 +286,35 @@ def makeWebhookResult(req):
             "displayText": output,
             "source": "python_stubot"
         }
+    
+    if req.get("result").get("action") == "fac.contact":
+        
+        result = req.get("result")
+        parameters = result.get("parameters")
+        book = parameters.get("specs")
+        coll = db.Faculty
+        search = book
+        rgx = re.compile('.*' +search+ '.*', re.IGNORECASE)
+        bookResult = coll.find({'Name':rgx})
+        length =bookResult.count()
+        
+        output = ""
+        if length == 0:
+            output = "No faculty Available"
+            
+        for i in bookResult:
+            bookEntity = i['Name']+' ('+i ['email'] +') '
+            if length != 1:
+                output = output + bookEntity + ' || '
+            elif length ==1:
+                output = output + bookEntity
+            length = length -1
+        
+        return {
+            "speech": output,
+            "displayText": output,
+            "source": "python_stubot"
+        }
         
 
 if __name__ == "__main__":
