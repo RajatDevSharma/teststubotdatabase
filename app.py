@@ -160,6 +160,37 @@ def makeWebhookResult(req):
             # "contextOut": [],
             "source": "python_stubot"
         }
+    
+    if req.get("result").get("action") == "soc.interest":
+        
+        result = req.get("result")
+        parameters = result.get("parameters")
+        book = parameters.get("interests")
+        coll = db.Societies
+        search=book
+        rgx = re.compile('.*' +search+ '.*', re.IGNORECASE)
+        bookResult = coll.find({"$or":[{'SocToDo':rgx}, {'SocTags':rgx}]})
+        length =bookResult.count()
+        
+        output = ""
+        if length == 0:
+            output = "Society Not Available"
+            
+        for i in bookResult:
+            bookEntity = i['SocName']
+            if length != 1:
+                output = output + bookEntity + ' || '
+            elif length ==1:
+                output = output + bookEntity
+            length = length -1
+        
+        return {
+            "speech": output,
+            "displayText": output,
+            #"data": {"http://www.thapar.edu/images/phocagallery/nava_nalanda_central_library/thumbs/phoca_thumb_l_unnamed.jpg"},
+            # "contextOut": [],
+            "source": "python_stubot"
+        }
         
 
 if __name__ == "__main__":
