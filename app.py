@@ -191,6 +191,37 @@ def makeWebhookResult(req):
             # "contextOut": [],
             "source": "python_stubot"
         }
+    
+    if req.get("result").get("action") == "soc.info":
+        
+        result = req.get("result")
+        parameters = result.get("parameters")
+        book = parameters.get("Societies")
+        coll = db.Societies
+        search = book
+        rgx = re.compile('.*' +search+ '.*', re.IGNORECASE)
+        bookResult = coll.find({'SocName':rgx})
+        length =bookResult.count()
+        
+        output = ""
+        if length == 0:
+            output = "Sorry, could not find"
+            
+        for i in bookResult:
+            bookEntity = i['SocToDo']+'Contact : '+i['SocContact']
+            if length != 1:
+                output = output + bookEntity + ' || '
+            elif length ==1:
+                output = output + bookEntity
+            length = length -1
+        
+        return {
+            "speech": output,
+            "displayText": output,
+            #"data": {""},
+            # "contextOut": [],
+            "source": "python_stubot"
+        }
         
 
 if __name__ == "__main__":
