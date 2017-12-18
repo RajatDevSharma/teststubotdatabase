@@ -226,8 +226,9 @@ def makeWebhookResult(req):
                             "template_type" : "generic",
                             "elements" : [ 
                                 {
-                                    "title" : output,
-                                    "image_url" : "http://www.thapar.edu/images/phocagallery/nava_nalanda_central_library/thumbs/phoca_thumb_l_unnamed.jpg"
+                                    "title" : book,
+                                    "image_url" : "http://www.thapar.edu/images/phocagallery/nava_nalanda_central_library/thumbs/phoca_thumb_l_unnamed.jpg",
+                                    "subtitle" : output
                                 }
                             ]
                         }
