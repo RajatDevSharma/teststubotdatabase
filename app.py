@@ -223,9 +223,6 @@ def makeWebhookResult(req):
             "data" : {              
                 "facebook" :[
                     {
-                        "text": output
-                    },
-                    {
                         "sender_action":"typing_on"
                     },
                     {   
@@ -241,6 +238,9 @@ def makeWebhookResult(req):
                                 ]
                             }
                         } 
+                    },
+                    {
+                        "text": output
                     }
                 ]
             },
