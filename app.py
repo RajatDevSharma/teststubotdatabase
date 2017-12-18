@@ -138,7 +138,7 @@ def makeWebhookResult(req):
         coll = db.Societies
         search="good"
         rgx = re.compile('.*' +search+ '.*', re.IGNORECASE)
-        bookResult = coll.coll.find({"$or":[{'SocToDo':rgx}, {'SocTags':rgx}]})
+        bookResult = coll.find({"$or":[{'SocToDo':rgx}, {'SocTags':rgx}]})
         length =bookResult.count()
         
         output=""
