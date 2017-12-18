@@ -32,7 +32,45 @@ def webhook():
     return r
 
 def makeWebhookResult(req):
+    
     if req.get("result").get("action") == "search.book.title":
+        
+        collection = db.librarysample
+        
+        result = req.get("result")
+        parameters = result.get("parameters")
+        book = parameters.get("title")
+        title = ""
+        for i in book:
+            title = i
+        #a=[]
+        #bookResult = collection.find( {"availabilty":"yes"} )
+        rgx = re.compile('.*' + title + '.*' , re.IGNORECASE)
+        bookResult = collection.find( {"title": rgx} )
+        length = bookResult.count()
+        
+        output = ""
+        if length == 0:
+            output = "Book Not Available"
+            
+        for i in bookResult:
+            #a.append(i["author"])
+            bookEntity = i["title"] + " by " + i["author"]
+            if length != 1:
+                output = output + bookEntity + ' || '
+            elif length ==1:
+                output = output + bookEntity
+            length = length -1
+        
+        return {
+            "speech": output,
+            "displayText": output,
+            #"data": {"http://www.thapar.edu/images/phocagallery/nava_nalanda_central_library/thumbs/phoca_thumb_l_unnamed.jpg"},
+            # "contextOut": [],
+            "source": "python_stubot"
+        }
+    
+    if req.get("result").get("action") == "available.book.title":
         
         collection = db.librarysample
         
@@ -95,8 +133,33 @@ def makeWebhookResult(req):
             # "contextOut": [],
             "source": "python_stubot"
         }
+    if req.get("result").get("action") == "best.soc":
         
+        coll = db.Societies
+        search="good"
+        rgx = re.compile('.*' +search+ '.*', re.IGNORECASE)
+        bookResult = coll.coll.find({"$or":[{'SocToDo':rgx}, {'SocTags':rgx}]})
+        length =bookResult.count()
         
+        output=""
+        if length == 0:
+            output = "all are good"
+            
+        for i in bookResult:
+            bookEntity = i['SocName']
+            if length != 1:
+                output = output + bookEntity + ' || '
+            elif length ==1:
+                output = output + bookEntity
+            length = length -1
+        
+        return {
+            "speech": output,
+            "displayText": output,
+            #"data": {""},
+            # "contextOut": [],
+            "source": "python_stubot"
+        }
         
 
 if __name__ == "__main__":
