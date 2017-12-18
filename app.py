@@ -63,6 +63,7 @@ def makeWebhookResult(req):
         
         return {
             "speech": output,
+            '''
             "messages": [
                 {
                     "type": 0,
@@ -73,11 +74,17 @@ def makeWebhookResult(req):
                     "imageUrl": "http://www.thapar.edu/images/phocagallery/nava_nalanda_central_library/thumbs/phoca_thumb_l_unnamed.jpg"
                 }
             ],
+            '''
             "displayText": output,
             #"data": {"http://www.thapar.edu/images/phocagallery/nava_nalanda_central_library/thumbs/phoca_thumb_l_unnamed.jpg"},
             # "contextOut": [],
             "source": "python_stubot"
         }
+    if req.get("result").get("action") == "new.book.library":
+        
+        collection = db.librarysample
+        
+        
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
