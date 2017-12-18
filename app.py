@@ -234,6 +234,13 @@ def makeWebhookResult(req):
                     }
                 }
             },
+            "messages": [
+                {
+                    "type": 0,
+                    "speech": output,
+                    "platform": "facebook"
+                }
+            ],
             #"data": {""},
             # "contextOut": [],
             "source": "python_stubot"
