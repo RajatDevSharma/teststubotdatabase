@@ -206,9 +206,11 @@ def makeWebhookResult(req):
         output = ""
         if length == 0:
             output = "Sorry, could not find"
-            
+        
+        logo =  ""
         for i in bookResult:
             bookEntity = i['SocToDo']+'Contact : '+i['SocContact']
+            logo = logo + i['SocImg']
             if length != 1:
                 output = output + bookEntity + ' || '
             elif length ==1:
@@ -218,13 +220,6 @@ def makeWebhookResult(req):
         return {
             "speech": output,
             "displayText": output,
-            "messages": [
-                {
-                    "type": 0,
-                    "speech": output,
-                    "platform": "facebook"
-                }
-            ],
             "data" : {
                 "facebook" : {
                     "attachment" : {
@@ -234,7 +229,7 @@ def makeWebhookResult(req):
                             "elements" : [ 
                                 {
                                     "title" : book,
-                                    "image_url" : "http://www.thapar.edu/images/phocagallery/nava_nalanda_central_library/thumbs/phoca_thumb_l_unnamed.jpg"
+                                    "image_url" : logo
                                 }
                             ]
                         }
