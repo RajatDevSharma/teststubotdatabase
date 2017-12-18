@@ -63,8 +63,18 @@ def makeWebhookResult(req):
         
         return {
             "speech": output,
+            "messages": [
+                {
+                    "type": 0,
+                    "speech": "look at that image"
+                },
+                {
+                    "type": 3,
+                    "imageUrl": "http://www.thapar.edu/images/phocagallery/nava_nalanda_central_library/thumbs/phoca_thumb_l_unnamed.jpg"
+                }
+            ],
             "displayText": output,
-            #"data": {},
+            #"data": {"http://www.thapar.edu/images/phocagallery/nava_nalanda_central_library/thumbs/phoca_thumb_l_unnamed.jpg"},
             # "contextOut": [],
             "source": "python_stubot"
         }
