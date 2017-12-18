@@ -220,21 +220,29 @@ def makeWebhookResult(req):
         return {
             "speech": output,
             "displayText": output,
-            "data" : {
-                "facebook" : {
-                    "attachment" : {
-                        "type" : "template",
-                        "payload" : {
-                            "template_type" : "generic",
-                            "elements" : [ 
-                                {
-                                    "title" : book,
-                                    "image_url" : logo
-                                }
-                            ]
-                        }
-                    }         
-                }
+            "data" : {              
+                "facebook" :[
+                    {
+                        "text": output
+                    },
+                    {
+                        "sender_action":"typing_on"
+                    },
+                    {   
+                        "attachment" : {
+                            "type" : "template",
+                            "payload" : {
+                                "template_type" : "generic",
+                                "elements" : [ 
+                                    {
+                                        "title" : book,
+                                        "image_url" : logo
+                                    }
+                                ]
+                            }
+                        } 
+                    }
+                ]
             },
             '''
             "messages": [
