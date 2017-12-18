@@ -226,7 +226,7 @@ def makeWebhookResult(req):
                             "template_type" : "generic",
                             "elements" : [ 
                                 {
-                                    "title" : book,
+                                    "title" : output,
                                     "image_url" : "http://www.thapar.edu/images/phocagallery/nava_nalanda_central_library/thumbs/phoca_thumb_l_unnamed.jpg"
                                 }
                             ]
@@ -234,6 +234,7 @@ def makeWebhookResult(req):
                     }
                 }
             },
+            '''
             "messages": [
                 {
                     "type": 0,
@@ -241,6 +242,7 @@ def makeWebhookResult(req):
                     "platform": "facebook"
                 }
             ],
+            '''
             #"data": {""},
             # "contextOut": [],
             "source": "python_stubot"
