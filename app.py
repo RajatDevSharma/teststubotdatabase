@@ -167,7 +167,7 @@ def makeWebhookResult(req):
         parameters = result.get("parameters")
         book = parameters.get("interests")
         coll = db.Societies
-        search = "film"
+        search = book
         rgx = re.compile('.*' +search+ '.*', re.IGNORECASE)
         bookResult = coll.find({"$or":[{'SocToDo':rgx}, {'SocTags':rgx}]})
         length =bookResult.count()
