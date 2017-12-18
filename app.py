@@ -63,26 +63,39 @@ def makeWebhookResult(req):
         
         return {
             "speech": output,
-            '''
-            "messages": [
-                {
-                    "type": 0,
-                    "speech": "look at that image"
-                },
-                {
-                    "type": 3,
-                    "imageUrl": "http://www.thapar.edu/images/phocagallery/nava_nalanda_central_library/thumbs/phoca_thumb_l_unnamed.jpg"
-                }
-            ],
-            '''
             "displayText": output,
             #"data": {"http://www.thapar.edu/images/phocagallery/nava_nalanda_central_library/thumbs/phoca_thumb_l_unnamed.jpg"},
             # "contextOut": [],
             "source": "python_stubot"
         }
+    
     if req.get("result").get("action") == "new.book.library":
         
-        collection = db.librarysample
+        coll = db.librarysample
+        bookResult = coll.find({'stat':"new"})
+        length =bookResult.count()
+        
+        output=""
+        if length == 0:
+            output = "No new books available"
+            
+        for i in bookResult:
+            #a.append(i["author"])
+            bookEntity = i["title"] + " by " + i["author"]
+            if length != 1:
+                output = output + bookEntity + ' || '
+            elif length ==1:
+                output = output + bookEntity
+            length = length -1
+        
+        return {
+            "speech": output,
+            "displayText": output,
+            #"data": {""},
+            # "contextOut": [],
+            "source": "python_stubot"
+        }
+        
         
         
 
