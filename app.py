@@ -218,6 +218,22 @@ def makeWebhookResult(req):
         return {
             "speech": output,
             "displayText": output,
+            "data" : {
+                "facebook" : {
+                    "attachment" : {
+                        "type" : "template",
+                        "payload" : {
+                            "template_type" : "generic",
+                            "elements" : [ 
+                                {
+                                    "title" : book,
+                                    "image_url" : "http://www.thapar.edu/images/phocagallery/nava_nalanda_central_library/thumbs/phoca_thumb_l_unnamed.jpg"
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
             #"data": {""},
             # "contextOut": [],
             "source": "python_stubot"
