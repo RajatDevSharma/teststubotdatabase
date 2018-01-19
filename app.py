@@ -43,14 +43,7 @@ def makeWebhookResult(req):
         if length == 0:
             output = "Book Not Available"
             
-        for i in bookResult:
-            #a.append(i["author"])
-            bookEntity = i["title"] + " by " + i["author"]
-            if length != 1:
-                output = output + bookEntity + ' || '
-            elif length ==1:
-                output = output + bookEntity
-            length = length -1
+
         
         return {
             "speech": output,
